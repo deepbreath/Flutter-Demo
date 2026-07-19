@@ -1,47 +1,38 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  const name = 'Flutter 学习者';
-  const studyDays = 1;
-  const progress = 0.2;
-  const isCompleted = false;
+void main() => runApp(const MaterialApp(home: Day01Page()));
 
-  runApp(
-    PracticeApp(
-      title: 'Day 01 · 变量与数据类型',
-      lines: [
-        '姓名：$name',
-        '学习天数：$studyDays',
-        '进度：${(progress * 100).toInt()}%',
-        '是否完成：$isCompleted',
-      ],
-    ),
-  );
-}
+String displayTopic(String? topic) => topic ?? '待定';
 
-class PracticeApp extends StatelessWidget {
-  const PracticeApp({required this.title, required this.lines, super.key});
+String completionLabel(bool completed) => completed ? '是' : '否';
 
-  final String title;
-  final List<String> lines;
+class Day01Page extends StatelessWidget {
+  const Day01Page({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(title: Text(title)),
-        body: ListView(
-          padding: const EdgeInsets.all(24),
-          children: lines
-              .map(
-                (line) => Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: Text(line, style: const TextStyle(fontSize: 20)),
-                ),
-              )
-              .toList(),
-        ),
+    const learner = 'Flutter 学习者';
+    const studyDays = 1;
+    const progress = 0.2;
+    const isCompleted = false;
+    const String? nextTopic = null;
+
+    final values = <String>[
+      '姓名：$learner',
+      '学习天数：$studyDays',
+      '进度：${(progress * 100).round()}%',
+      '是否完成：${completionLabel(isCompleted)}',
+      '下一主题：${displayTopic(nextTopic)}',
+    ];
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('01 · 变量、类型与空安全')),
+      body: ListView.separated(
+        padding: const EdgeInsets.all(24),
+        itemCount: values.length,
+        separatorBuilder: (_, _) => const Divider(),
+        itemBuilder: (_, index) =>
+            Text(values[index], style: Theme.of(context).textTheme.titleMedium),
       ),
     );
   }

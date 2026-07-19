@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const Day04App());
-}
+void main() => runApp(const MaterialApp(home: Day05Page()));
 
-class Day04App extends StatelessWidget {
-  const Day04App({super.key});
+class Day05Page extends StatelessWidget {
+  const Day05Page({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Day 04 · StatelessWidget')),
-        body: const Center(
-          child: ProfileCard(name: 'Flutter 学习者', lesson: '自定义 Widget'),
-        ),
+    return Scaffold(
+      appBar: AppBar(title: const Text('05 · StatelessWidget')),
+      body: const Center(
+        child: ProfileCard(name: 'Flutter 学习者', lesson: '自定义 Widget'),
       ),
     );
   }
